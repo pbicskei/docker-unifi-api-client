@@ -18,3 +18,9 @@ prepare:
 		fi
 	chmod 700 .functions;
 	chmod 600 .env;
+
+dockerfile:
+	echo "Preparing Directories: docker-unifi-api-client\n"
+		if [ ! -d "src" ]; then \
+		mkdir -p "src/docker"; \
+		fi
