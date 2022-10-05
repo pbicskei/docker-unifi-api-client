@@ -1,6 +1,6 @@
 # Makefile for docker-uinifi-api-client
 prepare:
-	echo "Preparing build environment: unifi-api-client"
+	echo "Preparing build environment: unifi-api-clien\n"
 		if [ ! -d ".build" ]; then \
 		mkdir -m 700 ".build"; \
 		fi	
