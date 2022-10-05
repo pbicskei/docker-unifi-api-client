@@ -24,3 +24,9 @@ dockerfile:
 		if [ ! -d "src/docker" ]; then \
 		mkdir -p "src/docker"; \
 		fi
+	echo "Preparing Files: docker-unifi-api-client\n"
+		if [ ! -f "src/docker/entrypoint.sh" ]; then \
+		touch "src/docker/entrypoint.sh"; \
+		chmod 755 src/docker/entrypoint.sh; \
+		fi
+	
