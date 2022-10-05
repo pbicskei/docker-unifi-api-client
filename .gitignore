@@ -1,0 +1,9 @@
+# .gitignore
+# Ignore .build directories
+**/.build/
+# Ignore .settings directories
+**/.settings/
+# Ignore .env
+**/.env
+# Ignore .functions
+**/.functions
