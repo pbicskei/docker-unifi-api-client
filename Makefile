@@ -1,20 +1,27 @@
-# Makefile for docker-uinifi-api-client
-prepare:
-	echo "Preparing build environment: unifi-api-clien\n"
-		if [ ! -d ".build" ]; then \
-		mkdir -m 700 ".build"; \
-		fi	
-	echo "Preparing environment settings: unifi-api-clien\n"
-		if [ ! -d ".settings" ]; then \
-		mkdir -m 700 ".settings"; \
-		fi
-	echo "Preparing environment variables: unifi-api-client\n"
-		if [ ! -f ".env" ]; then \
-		touch .env; \
-		fi
-	echo "Preparing environment functions: unifi-api-client\n"
-		if [ ! -d ".functions" ]; then \
-		touch .functions; \
-		fi
-	chmod 700 .functions;
-	chmod 600 .env;
+# Makefile for docker-unifi-api-client
+
+intro:
+	echo "Hello from docker-unifi-api-client"
+
+delete:
+	rm -r .build
+
+load:
+	chmod +x src/scripts/prepare.sh
+	src/scripts/prepare.sh
+	chmod +x src/scripts/load-calls.sh
+	src/scripts/load-calls.sh
+	
+build:
+	DOCKER_BUILDKIT=1 docker build --progress=plain --no-cache \
+	--build-arg APP_NAME=art_of_wifi \
+	-t unifi-api-client -f ./src/docker/Dockerfile.client .
+
+run:
+	docker run -it --name unifi-api-client \
+	-e CONTROLLER_USER=${UBNT_USER} \
+	-e CONTROLLER_PASSWORD=${UBNT_PASSWORD} \
+	-e CONTROLLER_URL=${UBNT_URL} \
+	-e CONTROLLER_VERSION=${UBNT_VERSION} \
+	unifi-api-client calls/list_sites.php
+	docker container rm unifi-api-client
