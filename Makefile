@@ -21,6 +21,6 @@ prepare:
 
 dockerfile:
 	echo "Preparing Directories: docker-unifi-api-client\n"
-		if [ ! -d "src" ]; then \
+		if [ ! -d "src/docker" ]; then \
 		mkdir -p "src/docker"; \
 		fi
