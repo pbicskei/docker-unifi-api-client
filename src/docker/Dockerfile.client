@@ -1,0 +1,19 @@
+# syntax = docker/dockerfile:1-experimental
+# docker-unifi-api-client environment file
+FROM php:7.4-cli
+
+ARG APP_NAME
+ENV APP_NAME=$APP_NAME
+ENV CONTROLLER_USER=
+ENV CONTROLLER_PASSWORD=
+ENV CONTROLLER_URL=
+ENV CONTROLLER_VERSION=
+
+RUN mkdir -p /usr/src/$APP_NAME
+COPY .build/$APP_NAME /usr/src/$APP_NAME
+RUN chmod 755 /usr/src/$APP_NAME/*
+WORKDIR /usr/src/$APP_NAME
+
+COPY src/docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]
