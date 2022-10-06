@@ -50,13 +50,7 @@ jobs:
 
       - name: Prepare environment
         run: |
-          if [ ! -d ".build" ]; then \
-          mkdir -m 700 ".build"; \
-          fi
-          echo "Preparing files: Source dir";
-          if [ ! -f ".build/README.md" ]; then \
-          echo "# docker-unifi-api-client build environment" > ".build/README.md"; \
-          fi
+          mkdir -m 700 ".build"
           app_name=art_of_wifi
           settings="config/api_calls.txt"
           dir=".build/$app_name/calls"
