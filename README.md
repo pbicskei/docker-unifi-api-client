@@ -1,5 +1,9 @@
 # Docker-Unifi-API-client
 
+[![CI - docker buildx cross-platform](https://github.com/pbicskei/docker-unifi-api-client/actions/workflows/ci.yml/badge.svg)](https://github.com/pbicskei/docker-unifi-api-client/actions/workflows/ci.yml)
+
+## Introduction
+
 For a little project I've been wanting a way to programmatically connect to my Unifi equipment. And after finding a easy to understand api the only huge task left was writing this thin wrapper in the form like a huge whale with a container on its back.
 
 But enough with the fuzzy story about why this container exists.
