@@ -38,7 +38,9 @@ jobs:
             echo "Creating $alias"
             echo "Creating $file"
           done < $(pwd)/config/api_calls.txt
-          ls $(pwd)/.build/art_of_wifi/calls/
+          cp $(pwd)/src/template/api_config.tpl $(pwd)/.build/art_of_wifi/calls/config.php
+          cd $(pwd)/.build/art_of_wifi/calls/
+          composer require art-of-wifi/unifi-api-client
 
       - name: Set up Qemu
         uses: docker/setup-qemu-action@v2
