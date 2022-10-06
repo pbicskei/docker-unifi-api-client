@@ -27,8 +27,15 @@ jobs:
           sudo apt install -y php php-mbstring php-xmlrpc php-soap php-gd php-xml php-cli php-zip
           sudo apt install -y curl
           curl -sS https://getcomposer.org/installer | php
-
-          mkdir $(pwd)/.build
+          mkdir -p $(pwd)/.build/art_of_wifi/calls
+          while read line;
+          do
+            alias="$(echo $line | sed -e 's/()//')"
+            f="$(echo $line | sed -e 's/()/.php/')"
+            file=$(pwd)/.build/art_of_wifi/calls
+            touch $file
+            cat $api_tpl | sed -e "s/<call>/$line/" > $file
+          done < config/api_calls.txt
 
       - name: Set up Qemu
         uses: docker/setup-qemu-action@v2
