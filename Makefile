@@ -5,7 +5,7 @@ intro:
 
 load:
 	chmod +x src/scripts/prepare.sh
-	src/scripts/prepare.sh
+	sh src/scripts/prepare.sh
 	chmod +x src/scripts/load-calls.sh
 	sh src/scripts/load-calls.sh
 	
