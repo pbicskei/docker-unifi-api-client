@@ -48,6 +48,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
+      - name: Prepare environment
+        run: |
+          chmod +x src/scripts/prepare.sh
+          src/scripts/prepare.sh
+          chmod +x src/scripts/load-calls.sh
+          src/scripts/load-calls.sh
+
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
