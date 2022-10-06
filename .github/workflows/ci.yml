@@ -49,12 +49,18 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Prepare environment
-        run: |
-          chmod +x src/scripts/prepare.sh
-          sh src/scripts/prepare.sh
-          chmod +x src/scripts/load-calls.sh
-          sh src/scripts/load-calls.sh
-
+        script: |
+          if [ ! -d ".build" ]; then \
+          mkdir -m 700 ".build"; \
+          fi
+          echo "Preparing files: Source dir";
+          if [ ! -f ".build/README.md" ]; then \
+          echo "# docker-unifi-api-client build environment" > ".build/README.md"; \
+          fi
+          origin="$(pwd)"
+          cd ".build/art_of_wifi"
+          docker run --rm -it -v ".build/art_of_wifi/calls:/app" composer/composer require art-of-wifi/unifi-api-client
+          cd "$origin"
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
