@@ -50,28 +50,24 @@ jobs:
 
       - name: Prepare environment
         run: |
-          mkdir -m 700 ".build"
+          mkdir -p -m 700 ".build/art_of_wifi/calls"
+          
           app_name=art_of_wifi
           settings="config/api_calls.txt"
           dir=".build/$app_name/calls"
           api_tpl="src/template/api_call.tpl"
           config_template="src/template/api_config.tpl"
-          origin="$(pwd)"
-          cd "$dir"
-          docker run --rm -it -v "$dir:/app" composer/composer require art-of-wifi/unifi-api-client
-          cd "$origin"
-          mkdir -p $(pwd)/$dir
-          load_api_into_dir $(pwd)/$dir
-          cp $config_template $(pwd)/$dir/config.php
-
+          docker run --rm -it -v ".build/art_of_wifi/calls:/app" composer/composer require art-of-wifi/unifi-api-client
+          cp src/template/api_config.tpl .build/art_of_wifi/calls/config.php
           while read line;
           do
+          echo $line | sed -e 's/()//'
           alias="$(echo $line | sed -e 's/()//')"
           settings="$(echo $line | sed -e 's/()/.php/')"
           file=$dir/$settings
           touch $file
           cat $api_tpl | sed -e "s/<call>/$line/" > $file
-          done < $settings
+          done < config/api_calls.txt
          
       - name: Build and push
         uses: docker/build-push-action@v3
