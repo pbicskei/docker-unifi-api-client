@@ -4,5 +4,5 @@ echo "No input was given, these commands are available:"
 echo
     ls $(echo $1 | tr '/' ' ' | awk '{print $1}')
 else
-php $*
+php $1
 fi
