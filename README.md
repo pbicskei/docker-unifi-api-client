@@ -1,16 +1,17 @@
 # Docker-Unifi-API-client
 
-For a little project I've been wanting a way to programmatically connect to my Unifi equipment.
-For example to automatically provision any hardware connected to my network and eventually automating as much as everything enabling me toward the ultimate goal.
-
-Plugging in a bare-metal ( or plastic) thing 🤖, and provision, configure and enable it to help me toward the next expansion.
+For a little project I've been wanting a way to programmatically connect to my Unifi equipment. And after finding a easy to understand api the only huge task left was writing this thin wrapper in the form like a huge whale with a container on its back.
 
 But enough with the fuzzy story about why this container exists.
 Especially thinking that I'm considering myself mostly as a classic-modern, middle-aged junior in mostly any of these type of scripting and programming tasks.
 
-And I needed/wanted something which enabled me to communicate with my Unifi controller(s) in a programmatic way. Combining this with Ansible, scripts or any other easy available way to include Unifi networking into playbooks.
+For example I'm trying learn while automating all provision of any hardware connected in my network and eventually automating as much as everything enabling me toward the ultimate goal.
 
-And credits where they belong; The first real section of the documentation is very nicely written by the people at [Art-of-Wifi](https://github.com/Art-of-WiFi).
+Plugging in a bare-metal ( or plastic) thing 🤖, and provision, configure and enable it to help me toward the next expansion.
+
+And as I desperately needed something which enabled me to communicate with my Unifi controller(s) in a programmatic way. When combining this with Ansible or a shell script it's way more efficient then asking it to what to you want verbally.
+
+All credits though, belong to [Art-of-Wifi](https://github.com/Art-of-WiFi) who did all of the heavy lifting with this really cool php api.
 
 ## Requirements
 
