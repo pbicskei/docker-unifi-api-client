@@ -100,3 +100,16 @@ Because we are using a intermediate function we can easily process it through a 
 ```bash
 api_call list_self.php | jq '.'
 ```
+
+## Footer
+
+Scots word for to waste time and not get on with things. Leads to footerer, footering, footery Pronouced not like foot but with long oooooo
+Stop footering around. Get on with your home work.
+
+Och, I widnae want him working here. He's awfy footery.
+by floflumpit January 31, 2010
+[urban-dictionary](https://www.urbandictionary.com/define.php?term=Footer)
+
+## Future
+
+As this container in it's current state is only firing 'one-shot' executions I would like to expand this with a webserver_mode later, where the container acts as it's own little http endpoint running as a service on a swarm or kubernetes cluster.
