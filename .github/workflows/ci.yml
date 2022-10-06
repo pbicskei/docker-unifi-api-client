@@ -50,7 +50,7 @@ jobs:
 
       - name: Prepare environment
         run: |
-          mkdir -p -m 700 ".build/art_of_wifi/calls"
+          mkdir -p ".build/art_of_wifi/calls"
           
           app_name=art_of_wifi
           settings="config/api_calls.txt"
