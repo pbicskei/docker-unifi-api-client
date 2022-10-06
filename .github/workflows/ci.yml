@@ -32,10 +32,10 @@ jobs:
           do
             alias="$(echo $line | sed -e 's/()//')"
             f="$(echo $line | sed -e 's/()/.php/')"
-            file=$(pwd)/.build/art_of_wifi/calls
+            file=$(pwd)/.build/art_of_wifi/calls/$line.php
             touch $file
-            cat src/template/api_call.tpl | sed -e "s/<call>/$line/" > $file
-          done < config/api_calls.txt
+            cat $(pwd)/src/template/api_call.tpl | sed -e "s/<call>/$line/" > $file
+          done < $(pwd)/config/api_calls.txt
 
       - name: Set up Qemu
         uses: docker/setup-qemu-action@v2
