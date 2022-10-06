@@ -1,4 +1,3 @@
-# syntax = docker/dockerfile:1-experimental
 # docker-unifi-api-client environment file
 FROM php:7.4-cli
 
