@@ -24,12 +24,12 @@ jobs:
       - name: Prepare environment
         run: |
           sudo apt update
-          sudo apt install -y php libapache2-mod-php php-mbstring php-xmlrpc php-soap php-gd php-xml php-cli php-zip
+          sudo apt install -y php php-mbstring php-xmlrpc php-soap php-gd php-xml php-cli php-zip
           sudo apt install -y curl
           curl -sS https://getcomposer.org/installer | php
 
           mkdir $(pwd)/.build
-          
+
       - name: Set up Qemu
         uses: docker/setup-qemu-action@v2
 
