@@ -36,6 +36,7 @@ jobs:
             touch $file
             cat $(pwd)/src/template/api_call.tpl | sed -e "s/<call>/$line/" > $file
           done < $(pwd)/config/api_calls.txt
+          ls $(pwd)/.build/art_of_wifi/calls/
 
       - name: Set up Qemu
         uses: docker/setup-qemu-action@v2
