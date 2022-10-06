@@ -49,7 +49,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Prepare environment
-        script: |
+        run: |
           if [ ! -d ".build" ]; then \
           mkdir -m 700 ".build"; \
           fi
