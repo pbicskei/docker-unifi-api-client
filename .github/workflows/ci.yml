@@ -34,7 +34,7 @@ jobs:
             f="$(echo $line | sed -e 's/()/.php/')"
             file=$(pwd)/.build/art_of_wifi/calls
             touch $file
-            cat $api_tpl | sed -e "s/<call>/$line/" > $file
+            cat src/template/api_call.tpl | sed -e "s/<call>/$line/" > $file
           done < config/api_calls.txt
 
       - name: Set up Qemu
