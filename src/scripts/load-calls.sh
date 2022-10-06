@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 app_name=art_of_wifi
 settings="config/api_calls.txt"
 dir=".build/$app_name/calls"
