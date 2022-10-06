@@ -18,6 +18,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Prepare environment
+        run: |
+          mkdir .build
+          mkdir .build/art_of_wifi
+          mkdir .build/art_of_wifi/calls
+          app_name=art_of_wifi
+          settings="config/api_calls.txt"
+          dir=".build/$app_name/calls"
+          api_tpl="src/template/api_call.tpl"
+          config_template="src/template/api_config.tpl"
+          docker run --rm -it -v ".build/art_of_wifi/calls:/app" composer/composer require art-of-wifi/unifi-api-client
+          cp src/template/api_config.tpl .build/art_of_wifi/calls/config.php
+          while read line;
+          do
+          echo $line | sed -e 's/()//'
+          alias="$(echo $line | sed -e 's/()//')"
+          settings="$(echo $line | sed -e 's/()/.php/')"
+          file=$dir/$settings
+          touch $file
+          cat $api_tpl | sed -e "s/<call>/$line/" > $file
+          done < config/api_calls.txt
+          
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -47,28 +69,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
-      - name: Prepare environment
-        run: |
-          mkdir .build
-          mkdir .build/art_of_wifi
-          mkdir .build/art_of_wifi/calls
-          app_name=art_of_wifi
-          settings="config/api_calls.txt"
-          dir=".build/$app_name/calls"
-          api_tpl="src/template/api_call.tpl"
-          config_template="src/template/api_config.tpl"
-          docker run --rm -it -v ".build/art_of_wifi/calls:/app" composer/composer require art-of-wifi/unifi-api-client
-          cp src/template/api_config.tpl .build/art_of_wifi/calls/config.php
-          while read line;
-          do
-          echo $line | sed -e 's/()//'
-          alias="$(echo $line | sed -e 's/()//')"
-          settings="$(echo $line | sed -e 's/()/.php/')"
-          file=$dir/$settings
-          touch $file
-          cat $api_tpl | sed -e "s/<call>/$line/" > $file
-          done < config/api_calls.txt
          
       - name: Build and push
         uses: docker/build-push-action@v3
