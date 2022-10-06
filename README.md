@@ -59,14 +59,22 @@ cp .env-example .env
 chmod 600 .env
 ```
 
-> Adjust the content of this file according your Unifi Installation.
+
+Adjust the content of this file according your Unifi Installation.
+
+> For `UBNT_URL` use `https://<ip or fqdn>:<port>`
+> for `UBNT_VERSION` check your controller's version.
+
+```bash
+export UBNT_USER=<UBNT_USER>
+export UBNT_PASSWORD=<UBNT_PASSWORD>
+export UBNT_URL=<UBNT_URL:PORT>
+export UBNT_VERSION=<UBNT_VERSION>
+```
+
 > Using it through is proxy or providing your controller with a ssl certificate is highly recommended.
 
 In the .env file there is also a function to easily instantiate an api-call to the controller.
-
-```bash
-source .env
-```
 
 ```bash
 function api_call() {
@@ -77,6 +85,11 @@ docker run --rm -it --name ubnt_api_call \
 -e CONTROLLER_VERSION=${UBNT_VERSION} \
 unifi-api-client calls/$*
 }
+
+Now lets source this shizzle and start actually doing important stuff, like discovering!
+
+```bash
+source .env
 ```
 
 ## Usage
@@ -113,3 +126,5 @@ by floflumpit January 31, 2010
 ## Future
 
 As this container in it's current state is only firing 'one-shot' executions I would like to expand this with a webserver_mode later, where the container acts as it's own little http endpoint running as a service on a swarm or kubernetes cluster.
+
+Also very important; Enabling automated build and push actions with Github Actions.
